@@ -1,0 +1,22 @@
+ body {
+      background-color: #d4d3d3;
+      font-family: sans-serif;
+    }
+   .boxColor{
+     background-color: #ffffff;
+   }
+    h1 {
+      font-weight: normal;
+      font-size: 140%;
+    }
+
+    .RunBox{  
+padding-bottom: 5px;
+padding-top: 5px;
+    }
+
+    .BlockyBox{
+    height: 480px; 
+    width: 100%;
+    }
+
