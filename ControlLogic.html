@@ -1,0 +1,137 @@
+<html>
+<head>
+   <title>Tech Kids</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="bin/soyutils.js"></script>
+  <script type="text/javascript" src="js/simple.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/StyleSheet.css">
+  <link rel="stylesheet" type="text/css" href="css/prettify.css">
+  <script src="bin/blocks/blockly_compressed.js"></script>
+  <script src="bin/blocks/blocks_compressed.js"></script>
+  <script src="bin/blocks/javascript_compressed.js"></script>
+  <script src="bin/blocks/python_compressed.js"></script>
+  <script src="bin/blocks/php_compressed.js"></script>
+  <script src="bin/blocks/dart_compressed.js"></script>
+  <script src="bin/blocks/acorn_interpreter.js"></script>
+  <script type="text/javascript" src="js/stepOver.js"></script>
+  <script src="js/prettify.js"></script>
+  <script type="text/javascript" src="bin/langauge/js/en.js"></script>
+  <script type="text/javascript" src="js/ControlLogic.js"></script>
+     <!--
+       <script type="text/javascript" src="js/blocks.js"></script>
+  <script type="text/javascript" src="js/stepOver.js"></script>
+    -->
+</head>
+<body>
+  <!--
+  <script type="text/javascript">
+    
+    document.write(examples.simple.helloWorld());
+    // Exercise the .helloName template
+    document.write('<hr>' + examples.simple.helloName({name: 'Ana'}));
+    // Exercise the .helloNames template
+    document.write('<hr>' + examples.simple.helloNames(
+        {name: 'Ana', additionalNames: ['Bob', 'Cid', 'Dee']})); 
+
+
+  </script>
+
+  -->
+  <div class="container boxColor">
+
+    <!-- question box -->
+   <div class="RunBox"> </div>
+   <div class="alert alert-info">
+    <h3> <p id="questionText" />   </h3>
+   </div>
+   
+  <div class="row">
+    <div class="col-md-8"> 
+      <!-- Blukly Drawing area -->
+       <div id="blocklyDiv" class="BlockyBox"></div>
+    </div>
+          <!-- Real code in origin langauge -->
+    <div class="col-md-4"> 
+        <div class="panel panel-default">
+          <div class="panel-heading">Python Code</div>
+          <div class="panel-body">  
+            <pre id="pyahtonCode" class="content"></pre>
+          </div>
+      </div>
+    </div>
+  </div>
+         <!-- run code box --> 
+  <div class="RunBox">
+    <button type="button" class="btn btn-danger" onclick="RunCode()">
+      <span class="glyphicon glyphicon-play"></span> Run
+    </button> 
+      <button onclick="stepCode()" class="btn btn-danger" id="stepButton" disabled="disabled"> 
+ <span class="glyphicon glyphicon-play-button"></span> Step overs
+      </button>
+ 
+  </div>
+   
+  
+
+<!-- Run the code box -->
+  <div class="RunBox"> </div>
+    <div class="panel panel-default">
+    <div class="panel-heading">Results</div>
+    <div class="panel-body">
+        <p id="pResults"/> 
+    </div>
+  </div>
+<!-- Tool box used -->
+  <xml id="toolbox" style="display: none">
+
+     <category name="Math">
+       <block type="math_number"></block>
+      <block type="math_arithmetic"></block>
+      <block type="math_single"></block>
+      <block type="math_trig"></block>
+      <block type="math_constant"></block>
+      <block type="math_number_property"></block>
+      <block type="math_modulo"></block>
+      </category>
+      
+      <category name="Variables" custom="VARIABLE"></category>
+        
+      <category name="Boolean">
+        <block type="logic_compare"></block>
+        <block type="logic_operation"></block>
+        <block type="logic_negate"></block>
+        <block type="logic_boolean"></block>
+        <block type="logic_null"></block>
+         
+      </category>
+
+ <category name="Print">
+     <block type="text_print" inline="false">
+              <value name="TEXT">
+                <block  type="variables_get">
+                  <field name="VAR">z</field>
+                </block>
+              </value>
+        </block>
+      </category>
+       
+
+        <!--
+        <block type="plane_set_seats" deletable="false" x="70" y="70"> 
+        </block>-->
+     
+  </xml>
+
+ 
+  
+
+  </div>
+
+
+ 
+   </body>
+</html>

@@ -3,33 +3,7 @@
  */
 var ToolBoxContainer = {};
 // list of saved questions
-var Questions=[ 
-{ text:" Find  z=a+b where a=5, b=15",
- Solution:"5+15"
-},
-{ text:" Find  z=a*b where a=2, b=25",
- Solution:"2*25"
-},
-{ text:" Find  z=a/b where a=10, b=2",
- Solution:"10/2"
-},
-{ text:" Find  z=a*b+c where a=5, b=15,c=5",
- Solution:"5*15+5"
-},
-{ text:" Find  z=a+(b*c) where a=5, b=15,c=5",
- Solution:"5+(15*5)"
-},
 
-{ text:" Find  z=(a+b-c)*d where a=5, b=15,c=5,d=2",
- Solution:"(5+15-5)*2"
-},
-{ text:" Find  z=a+b*2  where a=5, b=15",
- Solution:"5+(15*2)"
-},
-{ text:" Find  z=a+(-b*c+a) where a=5, b=15,c=5",
- Solution:"5+((-15*5)+5)"
-},
-];
 var QuestionsID=0; //current question id;
  /**
  * Create method for change block to code
@@ -56,13 +30,26 @@ ToolBoxContainer.changeContent=function () {
  ToolBoxContainer.init=function  () {
      ToolBoxContainer.workspace = Blockly.inject('blocklyDiv',
         {media: 'media/', 
-         toolbox: document.getElementById('toolbox')});
+         toolbox: document.getElementById('toolbox'),
+       grid:
+         {spacing: 20,
+          length: 3,
+          colour: '#ccc',
+          snap: true},
+     trashcan: true
+
+   });
+ 
+ 
   ToolBoxContainer.workspace.addChangeListener(ToolBoxContainer.changeContent);
 
   // load first question 
   NextQuestion();
 }
 
+
+
+// run the code
  function RunCode(){
       // Generate JavaScript code and run it.
       window.LoopTrap = 1000;
@@ -70,9 +57,11 @@ ToolBoxContainer.changeContent=function () {
       Blockly.JavaScript.INFINITE_LOOP_TRAP =
           'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
       var code = Blockly.JavaScript.workspaceToCode(ToolBoxContainer.workspace);
+      parseCode();
       Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
       try {
-         
+          
+
         var res = eval(code) + "<br>";
     document.getElementById('pResults').innerHTML= res;
        // var xmlDom = Blockly.Xml.workspaceToDom(ToolBoxContainer.workspace);
@@ -90,10 +79,27 @@ ToolBoxContainer.changeContent=function () {
       else{
         alert("error you have to corrcet your data");
       }
-    
+   
       } catch (e) {
         //alert(e);
       }
+   
+      // get block
+       
+       var rootBlock = null;
+  var blocks = ToolBoxContainer.workspace.getAllBlocks();
+  for (var i = 0, block; block = blocks[i]; i++) {
+    
+    if (block.type == 'variables_get') {
+      rootBlock = block;
+        var argument0 =  rootBlock.getFieldValue('VAR');
+     alert('y:'+argument0);
+      break;
+    }
+  }
+   //var code = Blockly.JavaScript.blockToCode(rootBlock);
+    
+  //----------
     }
     //display next question
  function NextQuestion(){
@@ -104,5 +110,8 @@ ToolBoxContainer.changeContent=function () {
     QuestionsID=0;
  }
    
+   // load question files
+   // Load the user's language pack.
+document.write('<script src="js/Data/LogicData.js"></script>\n');
  //ToolBoxContainer.init();
  window.addEventListener('load', ToolBoxContainer.init);

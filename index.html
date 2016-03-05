@@ -6,19 +6,7 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="bin/soyutils.js"></script>
-  <script type="text/javascript" src="js/simple.js"></script>
-  <link rel="stylesheet" type="text/css" href="css/StyleSheet.css">
-   <link rel="stylesheet" type="text/css" href="css/prettify.css">
-    <script src="bin/blocks/blockly_compressed.js"></script>
-  <script src="bin/blocks/blocks_compressed.js"></script>
-  <script src="bin/blocks/javascript_compressed.js"></script>
-  <script src="bin/blocks/python_compressed.js"></script>
-  <script src="bin/blocks/php_compressed.js"></script>
-  <script src="bin/blocks/dart_compressed.js"></script>
-    <script src="js/prettify.js"></script>
-  <script type="text/javascript" src="bin/langauge/js/en.js"></script>
-  <script type="text/javascript" src="js/controlGame.js"></script>
+  
 </head>
 <body>
   <!--
@@ -35,55 +23,25 @@
   </script>
 
   -->
-  <div class="container boxColor">
+  <div class="container ">
+ </br>
+ </br>
+ <div class="panel panel-primary">
+  <div class="panel-heading">Select test you want to take</div>
+  <div class="panel-body">
+ <ul class="list-group">
+  <li class="list-group-item"><a href="ControlMath.html"> Math test</a> </li>
+  <li class="list-group-item"><a href="ControlLogic.html">  Logic test</a></li>
+ 
+</ul>
 
-    <!-- question box -->
-   <div class="RunBox"> </div>
-   <div class="alert alert-info">
-    <h3> <p id="questionText" />   </h3>
-   </div>
-   
+  </div>
+</div>
     
-    <!-- Blukly Drawing area -->
-   <div id="blocklyDiv" class="BlockyBox"></div>
-   <div class="RunBox"> </div>
-       
-         <!-- run code box --> 
-  <div class="RunBox">
-    <button type="button" class="btn btn-danger" onclick="RunCode()">
-      <span class="glyphicon glyphicon-play"></span> Run
-    </button> 
-  </div>
-   
-   <!-- Real code in origin langauge -->
-  <div class="panel panel-default">
-    <div class="panel-heading">Python Code</div>
-    <div class="panel-body">  
-      <pre id="pyahtonCode" class="content"></pre>
-    </div>
-  </div>
-     
-
-<!-- Run the code box -->
-  <div class="RunBox"> </div>
-    <div class="panel panel-default">
-    <div class="panel-heading">Results</div>
-    <div class="panel-body">
-        <p id="pResults"/> 
-    </div>
-  </div>
-<!-- Tool box used -->
-  <xml id="toolbox" style="display: none">
-    <category name="Operations" colour="210">
-      <block type="math_number"></block>
-      <block type="math_arithmetic"></block>
-    </category >
-    <category name="Variables" colour="120" custom="VARIABLE">
-    </category>
   </xml>
-  </div>
 
-
+ 
+   
  
    </body>
 </html>

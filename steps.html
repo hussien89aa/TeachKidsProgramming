@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Blockly Demo: JS Interpreter</title>
+ 
+  <script src="bin/blocks/blockly_compressed.js"></script>
+  <script src="bin/blocks/blocks_compressed.js"></script>
+  <script src="bin/blocks/javascript_compressed.js"></script>
+  <script src="bin/blocks/acorn_interpreter.js"></script>
+  <script type="text/javascript" src="bin/langauge/js/en.js"></script>
+   <script type="text/javascript" src="js/stepOver.js"></script>
+  <style>
+    body {
+      background-color: #fff;
+      font-family: sans-serif;
+    }
+    h1 {
+      font-weight: normal;
+      font-size: 140%;
+    }
+  </style>
+</head>
+<body>
+  
+  <p>
+    <button onclick="parseCode()">Parse JavaScript</button>
+    <button onclick="stepCode()" id="stepButton" disabled="disabled">Step JavaScript</button>
+  </p>
+
+  <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+
+<!-- Tool box used -->
+  <xml id="toolbox" style="display: none">
+      <block type="math_number"></block>
+
+      <block type="math_arithmetic"></block>
+
+
+      <block type="variables_set" inline="true" x="20" y="20">
+      <field name="VAR">a</field>
+      </block>
+
+       <block type="variables_get" inline="true" x="20" y="20">
+       <field name="VAR">a</field>
+       </block>
+        <block type="text_print" inline="false">
+              <value name="TEXT">
+                <block  type="variables_get">
+                  <field name="VAR">z</field>
+                </block>
+              </value>
+        </block> 
+     
+  </xml>
+
+
+  <script>
+ var ToolBoxContainer = {};
+  ToolBoxContainer.workspace = Blockly.inject('blocklyDiv',
+        {media: 'media/',
+         toolbox: document.getElementById('toolbox')});
+ 
+        
+  </script>
+
+</body>
+</html>
