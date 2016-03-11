@@ -7,7 +7,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="bin/soyutils.js"></script>
-  <script type="text/javascript" src="js/simple.js"></script>
   <link rel="stylesheet" type="text/css" href="css/StyleSheet.css">
   <link rel="stylesheet" type="text/css" href="css/prettify.css">
   <script src="bin/blocks/blockly_compressed.js"></script>
@@ -21,7 +20,7 @@
   <script type="text/javascript" src="js/stepOver.js"></script>
   <script src="js/prettify.js"></script>
   <script type="text/javascript" src="bin/langauge/js/en.js"></script>
-  <script type="text/javascript" src="js/ControlMath.js"></script>
+  <script type="text/javascript" src="js/ControlOperations.js"></script>
      <!--
        <script type="text/javascript" src="js/blocks.js"></script>
   <script type="text/javascript" src="js/stepOver.js"></script>
@@ -88,38 +87,85 @@
   </div>
 <!-- Tool box used -->
   <xml id="toolbox" style="display: none">
-      <block type="math_number"></block>
 
+     <category name="Math">
+       <block type="math_number"></block>
       <block type="math_arithmetic"></block>
-
-
-      <block type="variables_set" inline="true" x="20" y="20">
-      <field name="VAR">a</field>
-      </block>
-
-       <block type="variables_get" inline="true" x="20" y="20">
-       <field name="VAR">a</field>
-       </block>
+      <block type="math_single"></block>
+      <block type="math_trig"></block>
+      <block type="math_constant"></block>
+      <block type="math_number_property"></block>
+      <block type="math_modulo"></block>
+      </category>
+      
+      <category name="Variables" custom="VARIABLE"></category>
         
-        <block type="text_print" inline="false">
+      <category name="Logic">
+        <category name="If">
+        <block type="controls_if"></block>
+        <block type="controls_if">
+          <mutation else="1"></mutation>
+        </block>
+        <block type="controls_if">
+          <mutation elseif="1"  else="1"></mutation>
+        </block>
+      </category>
+        <block type="logic_compare"></block>
+        <block type="logic_operation"></block>
+        <block type="logic_negate"></block>
+        <block type="logic_boolean"></block>
+        <block type="logic_null"></block>
+     
+      </category>
+
+ <category name="Print">
+     <block type="text_print" inline="false">
               <value name="TEXT">
                 <block  type="variables_get">
                   <field name="VAR">z</field>
                 </block>
               </value>
-        </block>  
-        <!--
-        <block type="plane_set_seats" deletable="false" x="70" y="70"> 
-        </block>-->
+        </block>
+      </category>
+       
+
+ <category name="Loops">
+      <block type="controls_repeat_ext">
+        <value name="TIMES">
+          <block type="math_number">
+            <field name="NUM">10</field>
+          </block>
+        </value>
+      </block>
+      <block type="controls_whileUntil"></block>
+      <block type="controls_for">
+        <value name="FROM">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="TO">
+          <block type="math_number">
+            <field name="NUM">10</field>
+          </block>
+        </value>
+        <value name="BY">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+      </block>
+      <block type="controls_forEach"></block>
+      <block type="controls_flow_statements"></block>
+    </category>
      
   </xml>
-
  
   
 
   </div>
 
-<!-- Modal  start-->
+ <!-- Modal  start-->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
     
@@ -150,6 +196,5 @@
       
    
  <!-- Modal content end-->
- 
    </body>
 </html>

@@ -1,1 +1,1 @@
- java -jar SoyToJsSrcCompiler.jar --outputPathFormat js/simple.js --srcs simple.soy
+ java -jar SoyToJsSrcCompiler.jar --outputPathFormat js/Messages.js --srcs Messages.soy

@@ -17,6 +17,7 @@
   <script src="bin/blocks/php_compressed.js"></script>
   <script src="bin/blocks/dart_compressed.js"></script>
   <script src="bin/blocks/acorn_interpreter.js"></script>
+   <script src="bin/soyutils_usegoog.js"></script>
   <script type="text/javascript" src="js/stepOver.js"></script>
   <script src="js/prettify.js"></script>
   <script type="text/javascript" src="bin/langauge/js/en.js"></script>
@@ -100,7 +101,7 @@
       
       <category name="Variables" custom="VARIABLE"></category>
         
-      <category name="Boolean">
+      <category name="Logic">
         <block type="logic_compare"></block>
         <block type="logic_operation"></block>
         <block type="logic_negate"></block>
@@ -131,7 +132,37 @@
 
   </div>
 
-
+<!-- Modal  start-->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content start-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Message</h4>
+        </div>
+        <div class="modal-body">
+          <table>
+            <tr>
+              <td style='width:110px'>
+              <img   id='myImg' width='100' height='100'/>  
+            </td>
+                <td>
+  <h3 id='msg'></h3>
+                </td>
+            </tr>
+          </table>
+        
+      
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Okey</button>
+        </div>
+      </div>
+      
+   
+ <!-- Modal content end-->
  
    </body>
 </html>

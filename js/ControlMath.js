@@ -62,30 +62,44 @@ ToolBoxContainer.changeContent=function () {
       try {
           
 
-        var res = eval(code) + "<br>";
-    document.getElementById('pResults').innerHTML= res;
+      
+        //var res =1;// eval(code) + "<br>";
+        parseCodeResults();
+        //Results is comming from steps run in parseCodeResults in script stepOverResults
+    document.getElementById('pResults').innerHTML= Results; 
        // var xmlDom = Blockly.Xml.workspaceToDom(ToolBoxContainer.workspace);
     //var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
     //alert(xmlText);
+    // examples.messages.OutputMessage({msgurl: '/img/img.jpg',msg:'run it'});
+    // document.write(examples.messages.OutputMessage({msgurl: '/img/img.jpg',msg:'run it'}) );
+
     var CorrectSolution=eval(Questions[QuestionsID-1].Solution);
-       var UserSolution = eval(code) ;
-      if (CorrectSolution==UserSolution ) 
+       //var UserSolution =1;// eval(code) ;
+      if (String(CorrectSolution)==String(Results) ) 
         {  
           var audio = new Audio('media/disconnect.mp3');
           audio.play();
-        alert("Cool, Correct, Move Next");
+         
+        document.getElementById("myImg").src = './images/correct.png';
+        document.getElementById("msg").innerHTML='Congratulations, Your Answer is correct Move to Next Question';
+
           NextQuestion();
         }
       else{
-        alert("error you have to corrcet your data");
+       document.getElementById("myImg").src = './images/error.png';
+       document.getElementById("msg").innerHTML='Sorry! Your Answer is fails,Try Again';
+
       }
+      //Display message
+      $('#myModal').modal('show');
+   
    
       } catch (e) {
         //alert(e);
       }
    
       // get block
-       
+       /*
        var rootBlock = null;
   var blocks = ToolBoxContainer.workspace.getAllBlocks();
   for (var i = 0, block; block = blocks[i]; i++) {
@@ -96,7 +110,7 @@ ToolBoxContainer.changeContent=function () {
      alert('y:'+argument0);
       break;
     }
-  }
+  }*/
    //var code = Blockly.JavaScript.blockToCode(rootBlock);
     
   //----------
@@ -113,5 +127,9 @@ ToolBoxContainer.changeContent=function () {
    // load question files
    // Load the user's language pack.
 document.write('<script src="js/Data/MathData.js"></script>\n');
+  // Enable steps results to get resuls for every steps.
+document.write('<script src="js/stepOverResults.js"></script>\n');
+ // call pop up messages
+document.write('<script src="js/Messages.js"></script>\n');
  //ToolBoxContainer.init();
  window.addEventListener('load', ToolBoxContainer.init);

@@ -48,7 +48,7 @@ ToolBoxContainer.changeContent=function () {
 }
 
 
-
+  var myInterpreterLocal = null;
 // run the code
  function RunCode(){
       // Generate JavaScript code and run it.
@@ -62,7 +62,6 @@ ToolBoxContainer.changeContent=function () {
       try {
           
 
-        
         //var res =1;// eval(code) + "<br>";
         parseCodeResults();
         //Results is comming from steps run in parseCodeResults in script stepOverResults
@@ -75,7 +74,7 @@ ToolBoxContainer.changeContent=function () {
 
     var CorrectSolution=eval(Questions[QuestionsID-1].Solution);
        //var UserSolution =1;// eval(code) ;
-      if (String(CorrectSolution)==String(Results) ) 
+      if (CorrectSolution==Results ) 
         {  
           var audio = new Audio('media/disconnect.mp3');
           audio.play();
@@ -92,7 +91,6 @@ ToolBoxContainer.changeContent=function () {
       }
       //Display message
       $('#myModal').modal('show');
-   
    
       } catch (e) {
         //alert(e);
@@ -113,8 +111,9 @@ ToolBoxContainer.changeContent=function () {
   }*/
    //var code = Blockly.JavaScript.blockToCode(rootBlock);
     
-  //----------
+  
     }
+ 
     //display next question
  function NextQuestion(){
    var res =  Questions[QuestionsID].text + "<br>";
@@ -126,7 +125,7 @@ ToolBoxContainer.changeContent=function () {
    
    // load question files
    // Load the user's language pack.
-document.write('<script src="js/Data/LogicData.js"></script>\n');
+document.write('<script src="js/Data/OperationData.js"></script>\n');
   // Enable steps results to get resuls for every steps.
 document.write('<script src="js/stepOverResults.js"></script>\n');
  // call pop up messages
