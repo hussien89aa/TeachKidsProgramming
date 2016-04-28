@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
   <script src="css/bootstrap/jquery.min.js"></script>
+    <script src="css/bootstrap/jqueryRotate.js"></script>
   <script src="css/bootstrap/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="binSource/soyutils.js"></script>
-  <script type="text/javascript" src="js/simple.js"></script>
   <link rel="stylesheet" type="text/css" href="css/StyleSheet.css">
   <link rel="stylesheet" type="text/css" href="css/prettify.css">
   <script src="binSource/blocks/blockly_compressed.js"></script>
@@ -21,7 +21,7 @@
   <script type="text/javascript" src="js/stepOver.js"></script>
   <script src="js/prettify.js"></script>
   <script type="text/javascript" src="binSource/langauge/js/en.js"></script>
-  <script type="text/javascript" src="js/ControlLogic.js"></script>
+  <script type="text/javascript" src="js/ControlBalloons.js"></script>
      <!--
        <script type="text/javascript" src="js/blocks.js"></script>
   <script type="text/javascript" src="js/stepOver.js"></script>
@@ -44,29 +44,37 @@
   -->
   <div class="container boxColor">
 
-    <!-- question box -->
+    <!-- question box 
    <div class="RunBox"> </div>
    <div class="alert alert-info">
-    <h3> <p id="questionText" />   </h3>
+    <h3> <p id="questionText" />  </h3>
    </div>
-   
+    -->
+  </br>
   <div class="row">
-    <div class="col-md-8"> 
+    <div class="col-md-6"> 
       <!-- Blukly Drawing area -->
        <div id="blocklyDiv" class="BlockyBox"></div>
     </div>
           <!-- Real code in origin langauge -->
-    <div class="col-md-4"> 
+    <div class="col-md-6"> 
         <div class="panel panel-default">
-          <div class="panel-heading">Python Code</div>
-          <div class="panel-body">  
-            <pre id="pyahtonCode" class="content"></pre>
+          <div class="panel-heading">Balloons Game </div>
+          <div class="panel-body" id="PlayBody" style="text-align: center;height:500px"> 
+             
+              <img id="imgBallon"  style=" position:absolute;"  src='images/BallonShooterAssets/Balloon0.png' width='100' height='100'> </img>
+              
+          
+              <img id="imgBallonShooter" style=" position:absolute;top:350px"  src='images/BallonShooterAssets/BalloonShooter.png' width='100' height='100'> </img>
+              
+             <!-- <p id="pyahtonCode" class="content"></p> -->
           </div>
       </div>
     </div>
   </div>
          <!-- run code box --> 
   <div class="RunBox">
+    <p id="datadis">Data</p>
     <button type="button" class="btn btn-danger" onclick="RunCode()">
       <span class="glyphicon glyphicon-play"></span> Run
     </button> 
@@ -88,51 +96,28 @@
   </div>
 <!-- Tool box used -->
   <xml id="toolbox" style="display: none">
+   <block type="math_number"></block>
 
-     <category name="Math">
-       <block type="math_number"></block>
-      <block type="math_arithmetic"></block>
-      <block type="math_single"></block>
-      <block type="math_trig"></block>
-      <block type="math_constant"></block>
-      <block type="math_number_property"></block>
-      <block type="math_modulo"></block>
-      </category>
       
-      <category name="Variables" custom="VARIABLE"></category>
-        
-      <category name="Logic">
-        <block type="logic_compare"></block>
-        <block type="logic_operation"></block>
-        <block type="logic_negate"></block>
-        <block type="logic_boolean"></block>
-        <block type="logic_null"></block>
-         
-      </category>
+      <block type="variables_set" inline="true" x="20" y="20">
+      <field name="VAR">Angle</field>
+      </block>
 
- <category name="Print">
-     <block type="text_print" inline="false">
+
+        <block type="text_print" inline="false">
               <value name="TEXT">
                 <block  type="variables_get">
-                  <field name="VAR">z</field>
+                  <field name="VAR">Fire</field>
                 </block>
               </value>
-        </block>
-      </category>
-       
-
-        <!--
-        <block type="plane_set_seats" deletable="false" x="70" y="70"> 
-        </block>-->
-     
+        </block> 
   </xml>
-
  
   
 
   </div>
 
-<!-- Modal  start-->
+ <!-- Modal  start-->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
     
@@ -163,6 +148,5 @@
       
    
  <!-- Modal content end-->
- 
    </body>
 </html>
