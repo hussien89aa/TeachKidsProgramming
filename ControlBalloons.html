@@ -55,24 +55,7 @@
     <div class="col-md-6"> 
       <!-- Blukly Drawing area -->
        <div id="blocklyDiv" class="BlockyBox"></div>
-    </div>
-          <!-- Real code in origin langauge -->
-    <div class="col-md-6"> 
-        <div class="panel panel-default">
-          <div class="panel-heading">Balloons Game </div>
-          <div class="panel-body" id="PlayBody" style="text-align: center;height:500px"> 
-             
-              <img id="imgBallon"  style=" position:absolute;"  src='images/BallonShooterAssets/Balloon0.png' width='100' height='100'> </img>
-              
-          
-              <img id="imgBallonShooter" style=" position:absolute;top:350px"  src='images/BallonShooterAssets/BalloonShooter.png' width='100' height='100'> </img>
-              
-             <!-- <p id="pyahtonCode" class="content"></p> -->
-          </div>
-      </div>
-    </div>
-  </div>
-         <!-- run code box --> 
+             <!-- run code box --> 
   <div class="RunBox">
     <p id="datadis">Data</p>
     <button type="button" class="btn btn-danger" onclick="RunCode()">
@@ -91,10 +74,32 @@
     <div class="panel panel-default">
     <div class="panel-heading">Results</div>
     <div class="panel-body">
-        <p id="pResults"/> 
+     
+      <div id="ResultsDiv" class="alert alert-info">
+  Your Balloons hit Skills is  <strong id="pResults">  ---   </strong>
+</div>
     </div>
   </div>
 <!-- Tool box used -->
+    </div>
+          <!-- Real code in origin langauge -->
+    <div  class="col-md-6"> 
+        <div  id="playerAread" class="panel panel-default">
+          <div class="panel-heading">Balloons Game </div>
+          <div class="panel-body" id="PlayBody" style="text-align: center;height:500px"> 
+             
+              <img id="imgBallon"  style=" position:absolute;"  src='images/BallonShooterAssets/Balloon0.png' width='100' height='100'> </img>
+              
+          
+            
+                 <img id="imgBallonShooter" style=" position:absolute;top:350px"  src='images/BallonShooterAssets/irow.png' width='18' height='60'> </img>
+                   <img id="imgBallonShooterShoter" style=" position:absolute;top:350px"  src='images/BallonShooterAssets/BalloonShooter.png' width='100' height='100'> </img>
+             <!-- <p id="pyahtonCode" class="content"></p> -->
+          </div>
+      </div>
+    </div>
+  </div>
+   
   <xml id="toolbox" style="display: none">
    <block type="math_number"></block>
 
@@ -107,7 +112,8 @@
         <block type="text_print" inline="false">
               <value name="TEXT">
                 <block  type="variables_get">
-                  <field name="VAR">Fire</field>
+
+                  <field name="VAR">Angle</field>
                 </block>
               </value>
         </block> 

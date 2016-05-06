@@ -74,15 +74,40 @@ function checkCollisions(){
   var horizontalMatch = comparePositions(pos[0], pos2[0]);
   var verticalMatch = comparePositions(pos[1], pos2[1]);            
   var match = horizontalMatch && verticalMatch;
-  if (match) { 
-     $('#imgBallon').hide(); 
+  //wind game
+  if (match) 
+  { 
+     //$('#imgBallon').hide(); 
+       var audio = new Audio('media/hitTarget.wav');
+          audio.play();
+     HitAttemps++;
+     ShowMessage(true);
+   clearInterval(IntervalCheck);
    }
-  $('#datadis').text(horizontalMatch+'='+verticalMatch);
+  /* //miss game
+else if (
+   $("#imgBallonShooter").position.left>=BoxWidth || //go out from right
+  $("#imgBallonShooter").position.left<=0 || //go out from left
+   $("#imgBallonShooter").position.top<=0  // go out from top
+  ) 
+{
+  ShowMessage(false);
+  clearInterval(IntervalCheck);
+}
+*/
+ 
 }
 
   var myInterpreterLocal = null;
+  //var  Ballonposition  ;
+  var IntervalCheck=0; //stop checking interface if the value pass
+  var Attemps=0 // number of Attemps
+ var HitAttemps=0; // number of times he hit the target
 // run the code
  function RunCode(){
+SetBallonPlace();
+//Get bullon possions
+// Ballonposition = $('#imgBallonShooter').position();
 
   //move the ballon to the left
   var i=0;
@@ -100,28 +125,12 @@ function checkCollisions(){
  
  
  //check the collion by timer
- window.setInterval(function() {
+ IntervalCheck=window.setInterval(function() {
          checkCollisions();
 }, 200);
 
- //move the irow fire direction;
-  /*
- $('#imgBallonShooter').rotate({
-      angle: 0,
-      animateTo:-45
-  }); 
-*/
-// ,move irow fire forword
-  while (i<10)
-  {     
-        $('#imgBallonShooter').animate({
-        "top" : "-=30px"  //moves up
-       // ,"left" : "-=30px" //moves up
-        });
-        i++;
-  
-       // var len=parseInt($('#imgBallon').css('left')) 
-  }
+
+ 
 
       // Generate JavaScript code and run it.
       window.LoopTrap = 1000;
@@ -137,33 +146,44 @@ function checkCollisions(){
         //var res =1;// eval(code) + "<br>";
         parseCodeResults();
         //Results is comming from steps run in parseCodeResults in script stepOverResults
-    document.getElementById('pResults').innerHTML= Results; 
+
        // var xmlDom = Blockly.Xml.workspaceToDom(ToolBoxContainer.workspace);
     //var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
     //alert(xmlText);
+    //move object
+    //get old tol and left value
+  
+    var angel=- Results;
+ //move the irow fire direction;
+ 
+ $('#imgBallonShooter').rotate({
+      angle: 0,
+      animateTo:-angel
+  }); 
+ $('#imgBallonShooterShoter').rotate({
+      angle: 0,
+      animateTo:-angel
+  }); 
+// ,move irow fire forword
+     var audio = new Audio('media/ThrowIrow.wav');
+          audio.play();
+  while (i<19)
+  {     
+        $('#imgBallonShooter').animate({
+        "top" : "-=30"  //moves up
+       ,"left" :"-="+ angel  //moves up
+        });
+        i++;
+  
+    var audio = new Audio('media/ThrowIrow.wav');
+          audio.play();
+  }
+  Attemps++; //attemps
     // examples.messages.OutputMessage({msgurl: '/img/img.jpg',msg:'run it'});
     // document.write(examples.messages.OutputMessage({msgurl: '/img/img.jpg',msg:'run it'}) );
+     ResultsColor();
 
-    var CorrectSolution=eval(Questions[QuestionsID-1].Solution);
-       //var UserSolution =1;// eval(code) ;
-      if (CorrectSolution==Results ) 
-        {  
-          var audio = new Audio('media/disconnect.mp3');
-          audio.play();
-         
-        document.getElementById("myImg").src = './images/correct.png';
-        document.getElementById("msg").innerHTML='Congratulations, Your Answer is correct Move to Next Question';
 
-          NextQuestion();
-        }
-      else{
-       document.getElementById("myImg").src = './images/error.png';
-       document.getElementById("msg").innerHTML='Sorry! Your Answer is fails,Try Again';
-
-      }
-      //Display message
-      $('#myModal').modal('show');
-   
       } catch (e) {
         //alert(e);
       }
@@ -185,11 +205,94 @@ function checkCollisions(){
     
   
     }
+ var BoxWidth=null;
+ var imgBallonLeft=null;
+var imgBallonTop=null;
+ function SetBallonPlace(){
+  //var BoxHeight=$('#playerAread').height();
+  BoxWidth=$('#playerAread').width();
  
+   $('#imgBallonShooter').animate({
+        "top" :$('#playerAread').height()-90  //moves up
+       ,"left" :$('#playerAread').width()/2//moves up
+        });
+   $('#imgBallonShooter').rotate({
+      angle: 0,
+      animateTo:0
+  }); 
+
+   
+   $('#imgBallonShooterShoter').animate({
+        "top" :$('#playerAread').height()-90  //moves up
+       ,"left" :$('#playerAread').width()/2-42//moves up
+        });
+   $('#imgBallonShooterShoter').rotate({
+      angle: 0,
+      animateTo:0
+  }); 
+ }
+ 
+ var className="noclass";
+ function ResultsColor(){
+  var level= HitAttemps/Attemps*100; // lvel of pass
+  
+  if (className!="noclass") {
+    $("#ResultsDiv").removeClass(className );
+    className="noclass";
+  };
+  if (level>=80) {  //gooo level
+
+$("#ResultsDiv").addClass( "alert alert-success" );
+className="alert alert-success";
+
+  }
+  else if ((level<80)&&(level>=55))
+   { //midel level
+$("#ResultsDiv").addClass( "alert alert-warning" );
+className= "alert alert-warning";
+  }
+  else 
+  { // bad level
+$("#ResultsDiv").addClass( "alert alert-danger" );
+className="alert alert-danger";
+  }
+
+  document.getElementById('pResults').innerHTML= level +"%";  
+ }
+ //show message if he win or not
+ function ShowMessage(Correct){
+      
+         SetBallonPlace();// return the shotter to the center posiostion
+      if (Correct==true) 
+        {  
+        
+          var audio = new Audio('media/disconnect.mp3');
+          audio.play();
+         
+        document.getElementById("myImg").src = './images/correct.png';
+        document.getElementById("msg").innerHTML='Congratulations, You hit the Target, Move to Next Target';
+
+          NextQuestion();
+        }
+      else{
+       document.getElementById("myImg").src = './images/error.png';
+       document.getElementById("msg").innerHTML='Sorry! You miss Target,Try Again';
+
+      }
+      //Display message
+      $('#myModal').modal('show');
+      $('#imgBallon').show(); 
+   ResultsColor(); 
+    
+ }
+ var oldrandPadding=0;
     //display next question
  function NextQuestion(){
+   SetBallonPlace();// return the shotter to the center posiostion
+
   var content= document.getElementById('imgBallon') ;
   // randam ballon
+ 
   //select randaom color ballon
   var rand= Math.floor((Math.random() * 8) + 0);
    $('#imgBallon').attr('src',  "images/BallonShooterAssets/Balloon"+rand+".png");
@@ -198,9 +301,9 @@ function checkCollisions(){
   var randPadding=Math.floor((Math.random() * WidthPlayBody) + 0);
     //$('#balloonDiv').addClass("col-sm-"+randPadding);
     $('#imgBallon').animate({
-         "left" : "+="+randPadding+"px" //moves up
+         "left" : "+="+(randPadding-oldrandPadding)+"px" //moves up
         });
-
+//oldrandPadding=randPadding;
 
    //var res =  Questions[QuestionsID].text + "<br>";
    //document.getElementById('questionText').innerHTML= "Q"+ String(QuestionsID+1)+":"+ res;
