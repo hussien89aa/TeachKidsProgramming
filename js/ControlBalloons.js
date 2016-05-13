@@ -257,7 +257,7 @@ $("#ResultsDiv").addClass( "alert alert-danger" );
 className="alert alert-danger";
   }
 
-  document.getElementById('pResults').innerHTML= level +"%";  
+  document.getElementById('pResults').innerHTML= level +"%, Number Try:"+ Attemps;  
  }
  //show message if he win or not
  function ShowMessage(Correct){
@@ -293,17 +293,19 @@ className="alert alert-danger";
   var content= document.getElementById('imgBallon') ;
   // randam ballon
  
+
   //select randaom color ballon
   var rand= Math.floor((Math.random() * 8) + 0);
    $('#imgBallon').attr('src',  "images/BallonShooterAssets/Balloon"+rand+".png");
      //place ballon in randa place
      var WidthPlayBody=$("#PlayBody").width();
-  var randPadding=Math.floor((Math.random() * WidthPlayBody) + 0);
+      var widthAreadPlay=$('#playerAread').width();
+  var randPadding=Math.floor((Math.random() * widthAreadPlay) + 0);
     //$('#balloonDiv').addClass("col-sm-"+randPadding);
     $('#imgBallon').animate({
          "left" : "+="+(randPadding-oldrandPadding)+"px" //moves up
         });
-//oldrandPadding=randPadding;
+ oldrandPadding=randPadding;
 
    //var res =  Questions[QuestionsID].text + "<br>";
    //document.getElementById('questionText').innerHTML= "Q"+ String(QuestionsID+1)+":"+ res;
